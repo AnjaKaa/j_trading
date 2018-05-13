@@ -11,7 +11,7 @@ describe('Компонента AppRouter', () => {
       expect(wrapper.find('Switch')).toHaveLength(1);
     });
 
-    it('PrivateRoute /users/:login', () => {
+    it('PrivateRoute /profile/:login', () => {
       expect(wrapper.find('Connect(PrivateRoute)').prop('path')).toEqual('/users/:login');
     });
 

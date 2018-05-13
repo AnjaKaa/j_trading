@@ -10,14 +10,14 @@ import {
   WrapMain
 } from '../StyledComponents';
 
-class Feeds extends Component {
+class Stats extends Component {
   render() {
     return ( <Fragment >
       <Background / >
       <Main >
         <WrapMain >
-          <Header title="Лента"/ >
-          <div> Fiids 
+          <Header title="Рейтинг"/ >
+          <div> Stats 
           </div>
           <Footer/>
         </WrapMain> 
@@ -27,4 +27,4 @@ class Feeds extends Component {
   }
 }
 
-export default Feeds;
+export default Stats;

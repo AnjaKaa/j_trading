@@ -1,16 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
+import { Redirect } from 'react-router-dom';
 import { authRequest, getIsAuthorized, getAuthError } from '../../ducks/auth';
 import { regRequest, getIsRegistered, getRegError } from '../../ducks/reg';
-import {
+
+import Background from '../Background';
+import {  Main,
+  WrapMain,
   WrapCenter,
   CentrerPanel,
   LoginForm,
   LoginLogo,
   InputWrap,
   InputLoginIcon,
-  InputLogin,
   Button,
 } from '../StyledComponents';
 
@@ -30,6 +33,7 @@ class Login extends PureComponent {
     console.log(event.target.name);
     this.setState({ mode: event.target.name === 'login' ? 'registration' : 'login' });
   };
+  
   handleInputchange = event => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -38,7 +42,7 @@ class Login extends PureComponent {
 
   handleSubmit = values => {
     const { mode } = this.state;
-
+    console.log(values);
     if (mode === 'login') {
       this.props.authRequest(values);
     } else {
@@ -47,24 +51,33 @@ class Login extends PureComponent {
   };
 
   render() {
+    const {isAuthorize} = this.props;
     const { mode } = this.state;
 
-    return (
+    if (isAuthorize) {
+      return <Redirect to="/" />;
+    } else {
+      return  <Fragment>
+      <Background / >
+      <Main >
+        <WrapMain >
       <WrapCenter>
         <LoginLogo src={imgLogo} alt="project logo" />
         <CentrerPanel>
           <LoginForm>
-            <Form
+            <Form onSubmit={this.handleSubmit}
               render={({ handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
+                <form 
+                onSubmit={handleSubmit}
+                >
                   <InputWrap>
-                    <Field name="email" component={InputLogin} placeholder="email" type="email" />
+                    <Field name="email" component="input" placeholder="email" type="email" />
                     <InputLoginIcon url={imgUser} />
                   </InputWrap>
                   <InputWrap>
                     <Field
                       name="password"
-                      component={InputLogin}
+                      component="input"
                       placeholder="password"
                       type="password"
                     />
@@ -98,7 +111,12 @@ class Login extends PureComponent {
           )}
         </CentrerPanel>
       </WrapCenter>
-    );
+      </WrapMain> 
+      </Main >
+      
+      </Fragment>
+        }
+    
   }
 }
 
