@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Main = styled.main `
+export const Main = styled.main`
   height: 100vh;
-  font-family: "Roboto","Arial", sans-serif;     
+  font-family: 'Roboto', 'Arial', sans-serif;
   background-color: #f5f5f6;
 `;
 
-export const WrapMain = styled.div `
-  display: flex;  
-  flex-direction:column;  
-  justify-content: space-between; 
+export const WrapMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
   position: absolute;
   align-items: center;
 `;
-export const WrapCenter = styled.div `
+export const WrapCenter = styled.div`
   align-items: center;
   display: flex;
   margin: 0 auto;
@@ -28,7 +29,7 @@ export const WrapCenter = styled.div `
   z-index: 1;
 `;
 
-export const CentrerPanel = styled.div `
+export const CentrerPanel = styled.div`
   background-color: #fff;
   border-radius: 7px;
   padding: 9px 0;
@@ -54,18 +55,18 @@ export const CentrerPanel = styled.div `
   }
 `;
 
-export const LoginLogo = styled.img `
+export const LoginLogo = styled.img`
   width: 300px;
   height: 144px;
 `;
-export const LoginForm = styled.div `
+export const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 10px 20px;
 `;
 
-export const InputWrap = styled.div `
+export const InputWrap = styled.div`
   position: relative;
 
   input {
@@ -74,10 +75,10 @@ export const InputWrap = styled.div `
     border: 1px solid #dfdfdf;
     border-radius: 7px;
     width: calc(100% - 62px);
-    }
+  }
 `;
 
-export const InputLoginIcon = styled.span `
+export const InputLoginIcon = styled.span`
   background-image: url(${props => props.url});
   width: 19px;
   height: 19px;
@@ -88,7 +89,7 @@ export const InputLoginIcon = styled.span `
   left: 21px;
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   width: 100%;
   margin: 10px 0;
   background-color: #4db6e2;
@@ -101,26 +102,25 @@ export const Button = styled.button `
   cursor: pointer;
 `;
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   max-width: 1240px;
 `;
 
-
-export const Logo = styled.img `
+export const Logo = styled.img`
   width: 140px;
   height: 80px;
 `;
-export const HeaderWrap = styled.div `
+export const HeaderWrap = styled.div`
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   width: 100%;
   max-height: 80px;
   background-color: #2a2c2e;
 `;
-export const HeaderTitle = styled.div `
+export const HeaderTitle = styled.div`
   width: 250px;
   max-height: 28px;
   padding: 32px 20px;
@@ -129,49 +129,67 @@ export const HeaderTitle = styled.div `
   color: #61dafb;
 `;
 
-export const HeaderStatisticsBlock = styled.div `
+export const HeaderStatisticsBlock = styled.div`
   width: 140px;
   height: 80px;
   margin: 20px 10px;
   color: #ffffff;
 `;
-export const UserBlock = styled.div `
-  display: flex;  
+
+export const CurrencyLink = styled(Link)`
+  width: 140px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  margin-right: 20px;
+  background-color: #404243;
+  color: ${props => (props.className === 'active' ? '#fff' : '#c3c3c3')};
+  transition: color 0.6s;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const UserBlock = styled.div`
+  display: flex;
   justify-content: space-between;
   width: 500px;
   height: 80px;
-  padding: 20px 0;  
+  padding: 20px 0;
 `;
 
-export const UserBlockItem = styled.div `
-  position:relative; 
-  color: #ffffff; 
+export const UserBlockItem = styled.div`
+  position: relative;
+  color: #ffffff;
   padding: 0 20px;
   min-width: 65px;
-  height:32px;  
+  height: 32px;
   text-align: center;
 
   span {
     line-height: 32px;
   }
 
-  &:before{
+  &:before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 32px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     border-radius: 15px;
     opacity: 0.2;
   }
 
   a {
-    text-decoration:none;
-    color:#ffffff;
+    text-decoration: none;
+    color: #ffffff;
   }
-  
 `;
 
 export const CountNewFeeds = styled.div`
@@ -183,16 +201,16 @@ export const CountNewFeeds = styled.div`
   padding: 5px
   background-color: #9f3232;
   border-radius: 50%;
-`
+`;
 
-export const FooterWrap = styled.div `
-  display: flex;  
+export const FooterWrap = styled.div`
+  display: flex;
   justify-content: center;
   width: 100%;
   max-height: 100px;
   background-color: #1e2021;
 
-  nav {  
+  nav {
     ul {
       display: flex;
       justify-content: center;
@@ -208,33 +226,32 @@ export const FooterWrap = styled.div `
         float: left;
 
         a {
-          text-decoration:none;
-          color:#ffffff;
+          text-decoration: none;
+          color: #ffffff;
         }
       }
     }
   }
 `;
 
-export const FooterTitle = styled.div `
-width: 250px;
-padding: 20px;
-font-size: 14px;
-color: #ffffff;
-a {
-  text-decoration:none;
-  color:#ffffff;
-}
+export const FooterTitle = styled.div`
+  width: 250px;
+  padding: 20px;
+  font-size: 14px;
+  color: #ffffff;
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
 `;
 
-
 export const ProfileMainContainer = styled(Container)`
-  flex-grow:1;
+  flex-grow: 1;
   width: 100%;
-`
+`;
 export const ProfileCol = styled.div`
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;
   width: ${props => props.width};
   text-align: ${props => props.textAlign};
   img {
@@ -244,39 +261,37 @@ export const ProfileCol = styled.div`
     margin: 0 25px 25px 0;
   }
 
-  a{
-    cursor:pointer;
+  a {
+    cursor: pointer;
     color: #b3b3b3;
     text-decoration: line;
     &:visit {
-      
-    color: #b3b3b3;
+      color: #b3b3b3;
     }
-  
   }
-`
+`;
 
 export const ProfileNameWrap = styled.div`
   min-width: 450px;
   padding: 100px 30px;
   verticat-align: middle;
-`
+`;
 
 export const ProfileName = styled.span`
-  font-size: 36px;  
-`
+  font-size: 36px;
+`;
 
 export const ProfileSum = styled.span`
   font-size: 40px;
-`
+`;
 
 export const CoinInput__Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 298px;
-`
+`;
 
-export const CoinInput__Input =styled.div`
+export const CoinInput__Input = styled.div`
   background-color: #414244;
   border: 1px solid #000;
   color: #ffffff;
@@ -284,13 +299,13 @@ export const CoinInput__Input =styled.div`
   padding: 6px 0;
   flex: 1 1 150px;
   margin: 5px 0;
-`
+`;
 
 export const CoinInput__Integer = styled.span`
   width: 55%;
   display: inline-block;
   text-align: right;
-`
+`;
 
 export const CoinInput__Fraction = styled.span`
   color: #8a8a8a;
@@ -299,28 +314,30 @@ export const CoinInput__Fraction = styled.span`
   vertical-align: bottom;
   text-overflow: ellipsis;
   overflow: hidden;
-`
+`;
 
 export const CoinInput__Currency = styled.p`
   flex: 1 1;
   text-align: left;
   margin: 15px 0 0 15px;
-`
+`;
 
 export const TradePage__Container = styled.article`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
-`
+  justify-content: start;
+  background-color: #ffffff;
+  padding: 20px 10px 10px 20px;
+`;
 
 export const TradePage__Operations = styled.section`
   width: 450px;
-`
+`;
 
 export const TradeOperations__Container = styled.article`
   padding-top: 40px;
-`
+`;
 
 export const TradeOperations__InputWrapper = styled.div`
   background-color: #f2f2f2;
@@ -329,7 +346,7 @@ export const TradeOperations__InputWrapper = styled.div`
   position: relative;
   margin: 5px 0;
   width: 218px;
-`
+`;
 
 export const TradeOperations__Input = styled.input`
   background-color: transparent;
@@ -339,7 +356,7 @@ export const TradeOperations__Input = styled.input`
   padding: 5px 0 3px;
   padding-right: 50px;
   box-sizing: border-box;
-`
+`;
 
 export const TradeOperations__Currency = styled.span`
   position: absolute;
@@ -348,7 +365,15 @@ export const TradeOperations__Currency = styled.span`
   text-align: left;
   color: #adadad;
   top: 5px;
-`
+`;
+
+export const TradeChart__Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  background-color: #edf0f1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
 export const TradeOperations__Button = styled.button`
   width: 100px;
   margin-left: 20px;
@@ -356,26 +381,26 @@ export const TradeOperations__Button = styled.button`
   color: #fff;
   padding: 5px 0 3px;
   border-radius: 3px;
-  background-color:  ${props => props.fill};  
-`
+  background-color: ${props => (props.className === 'redBtn' ? '#ba564f' : '#69b3dc')};
+`;
 
-export const TradeChart__Container =  styled.article`
-  width: 750px
-`
+export const TradeChart__Container = styled.article`
+  width: 750px;
+`;
 
 export const TradeChart__TableSection = styled.div`
   border: 1px solid #edf0f1;
   height: 448px;
   margin-top: 15px;
   border-radius: 3px;
-`
+`;
 
-export const TradeChart__Buttons=styled.button`
+export const TradeChart__Button = styled.button`
   margin: 0 4px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  background-color: transparent;
-  color: #9998A1;
+  background-color: ${props => (props.active ? '#4db6e2' : 'transparent')};
+  color: ${props => (props.active ? '#ffffff' : '#9998a1')};
   padding: 2px 16px;
-`
+`;

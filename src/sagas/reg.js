@@ -1,8 +1,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { registrationRequest, registrationSuccess, registrationFailure } from '../ducks/reg';
+import { regRequest, regSuccess, regFailure } from '../ducks/reg';
 import { authSuccess } from '../ducks/auth';
-import { registration, setTokenApi } from '../helpers/api';
-import { setTokenToLocalStorage } from '../helpers/localStorage';
+import { registration, setTokenApi } from '../api';
+import { setTokenToLocalStorage } from '../localStorage';
 
 export function* registerFlow(action) {
   try {
@@ -12,7 +12,7 @@ export function* registerFlow(action) {
     setTokenToLocalStorage(token);
     setTokenApi(token);
 
-    yield put(registrationSuccess(token));
+    yield put(regSuccess(token));
     yield put(authSuccess());
   } catch (error) {
     const messages = error.data.message;
@@ -23,10 +23,10 @@ export function* registerFlow(action) {
       message += `${key}: ${messages[key]}`;
     }
 
-    yield put(registrationFailure(message));
+    yield put(regFailure(message));
   }
 }
 
 export default function* registerWatch() {
-  yield takeLatest(registrationRequest, registerFlow);
+  yield takeLatest(regRequest, registerFlow);
 }
