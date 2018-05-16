@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 import { logout } from '../../ducks/auth';
 import { selectBtc, selectEth, getCurrentBtcSell, getCurrentEthSell } from '../../ducks/currency';
-import { fetchUserInfoRequest, getUserEmail } from '../../ducks/user';
+import { fetchUserInfoRequest, getUserInfo } from '../../ducks/user';
 
 import {
   Container,
@@ -106,7 +106,7 @@ export default withRouter(
     state => ({
       btc: getCurrentBtcSell(state),
       eth: getCurrentEthSell(state),
-      userEmail: getUserEmail(state),
+      userInfo: getUserInfo(state),
     }),
 
     {

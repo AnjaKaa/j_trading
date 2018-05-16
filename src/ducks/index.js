@@ -4,6 +4,7 @@ import reg from './reg';
 import user from './user';
 import currency from './currency';
 import wallet from './wallet';
+import transactions from './transactions';
 
 export default combineReducers({
   auth,
@@ -11,4 +12,5 @@ export default combineReducers({
   user,
   currency,
   wallet,
+  transactions,
 });

@@ -404,3 +404,31 @@ export const TradeChart__Button = styled.button`
   color: ${props => (props.active ? '#ffffff' : '#9998a1')};
   padding: 2px 16px;
 `;
+
+export const Transactions__Table = styled.table`
+  margin: 40px 0;
+  width: 100%;
+  text-align: right;
+  border: 1px solid #edf0f1;
+  border-collapse: collapse;
+  border-radius: 3px;
+`;
+
+export const Transactions__TableHead = styled.tr`
+  background-color: #edf0f1;
+  border: 1px solid #edf0f1;
+`;
+
+export const Transactions__Th = styled.th`
+  background-color: #edf0f1;
+  border: 1px solid #edf0f1;
+`;
+
+export const Transactions__Tr = styled.tr`
+  border: 1px solid #edf0f1;
+`;
+
+export const Transactions__Td = styled.td`
+  border: 1px solid #edf0f1;
+  padding: 5px 10px;
+`;

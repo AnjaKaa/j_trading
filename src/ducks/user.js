@@ -1,20 +1,38 @@
-import { createActions, handleAction } from 'redux-actions';
+import { createActions, handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 
 export const { fetchUserInfoRequest, fetchUserInfoSuccess, fetchUserInfoFailure } = createActions(
-  ('FETCH_USER_INFO_REQUEST': null),
-  ('FETCH_USER_INFO_SUCCESS': null),
-  ('FETCH_USER_INFO_FAILURE': null),
+  'FETCH_USER_INFO_REQUEST',
+  'FETCH_USER_INFO_SUCCESS',
+  'FETCH_USER_INFO_FAILURE',
 );
 
-export const email = handleAction(
-  fetchUserInfoRequest,
-  (state, action) => (action.payload ? action.payload.data.result.email : null),
-  '',
+const initialState = {
+  info: {},
+  isLoading: false,
+  error: null,
+};
+
+export default handleActions(
+  {
+    [fetchUserInfoRequest]: (state, action) => ({
+      ...state,
+      isLoading: true,
+    }),
+
+    [fetchUserInfoSuccess]: (state, action) => ({
+      ...state,
+      isLoading: false,
+      info: action.payload.data.result,
+    }),
+
+    [fetchUserInfoFailure]: (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload,
+    }),
+  },
+  initialState,
 );
 
-export default combineReducers({
-  email,
-});
-
-export const getUserEmail = state => state.user.email;
+export const getUserInfo = state => state.user.info;
