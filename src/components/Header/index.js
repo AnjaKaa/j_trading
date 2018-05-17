@@ -63,7 +63,7 @@ class Header extends Component {
   render() {
     console.log('HEADER', this.props);
     const { currency } = this.props.match.params;
-    const { title } = this.props;
+    const { title, userInfo } = this.props;
     const { btc, eth } = this.state;
     return (
       <HeaderWrap>
@@ -92,7 +92,7 @@ class Header extends Component {
               </span>
             </UserBlockItem>
             <UserBlockItem>
-              <span> useruseruseruser </span>
+              <span> {userInfo.email} </span>
             </UserBlockItem>
           </UserBlock>
         </Container>

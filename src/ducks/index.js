@@ -5,6 +5,7 @@ import user from './user';
 import currency from './currency';
 import wallet from './wallet';
 import transactions from './transactions';
+import feed from './feed';
 
 export default combineReducers({
   auth,
@@ -13,4 +14,5 @@ export default combineReducers({
   currency,
   wallet,
   transactions,
+  feed,
 });

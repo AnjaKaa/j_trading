@@ -248,7 +248,16 @@ export const FooterTitle = styled.div`
 export const ProfileMainContainer = styled(Container)`
   flex-grow: 1;
   width: 100%;
+  background-color: #ffffff;
 `;
+
+export const ProfileFeedsContainer = styled(Container)`
+  width: 600px;
+  flex-grow: 1;
+  background-color: #ffffff;
+  margin: 50px 0 100px;
+`;
+
 export const ProfileCol = styled.div`
   display: flex;
   flex-direction: column;
@@ -329,6 +338,7 @@ export const TradePage__Container = styled.article`
   justify-content: start;
   background-color: #ffffff;
   padding: 20px 10px 10px 20px;
+  overflow: auto;
 `;
 
 export const TradePage__Operations = styled.section`
@@ -431,4 +441,67 @@ export const Transactions__Tr = styled.tr`
 export const Transactions__Td = styled.td`
   border: 1px solid #edf0f1;
   padding: 5px 10px;
+`;
+
+export const FeedsMainContainer = styled(Container)`
+  flex-grow: 1;
+  width: 100%;
+  background-color: #ffffff;
+`;
+
+export const Feed__Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  padding: 50px 30px;
+  background-color: #ffffff;
+  min-width: 530px;
+`;
+
+export const Feed__Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 45px;
+  font-size: 18px;
+`;
+
+export const Feed__UserName = styled.div`
+  font-weigth: bold;
+`;
+export const Feed__Date = styled.div`
+  color: #adaeb0;
+`;
+export const Feed__Content = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+  }
+`;
+
+export const Feed__ContentRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const Feed__Title = styled.div`
+  font-size: 22px;
+  font-weigth: bold;
+`;
+
+export const Comment__Btn = styled.a`
+  display: inline-block;
+  max-height: 15px;
+  padding: 10px;
+  color: #adaeb0;
+  background-color: #f2f3f5;
+  color: #adaeb0;
+  cursor: pointer;
+  img {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+  }
 `;

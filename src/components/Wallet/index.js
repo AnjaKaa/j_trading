@@ -16,7 +16,6 @@ import {
   getWalletError,
 } from '../../ducks/wallet';
 import {
-  buyCurrencyRequest,
   sellCurrencyRequest,
   getCurrentBtcPurchase,
   getCurrentBtcSell,
@@ -110,7 +109,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchWalletRequest,
-  buyCurrencyRequest,
   sellCurrencyRequest,
 };
 
