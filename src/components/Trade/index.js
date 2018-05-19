@@ -20,6 +20,7 @@ import {
   TradeChart__TableSection,
   TradeChart__Buttons,
   TradeChart__Button,
+  Transactions__TableWrap,
   Transactions__Table,
   Transactions__TableHead,
   Transactions__Th,
@@ -50,8 +51,7 @@ import {
   getWalletUsd,
   getWalletError,
 } from '../../ducks/wallet';
-
-//import { fetchTransactionsRequest } from '../../ducks/transactions';
+import { fetchTransactionsRequest, getRecords } from '../../ducks/transactions';
 
 class Trade extends Component {
   state = {
@@ -62,7 +62,7 @@ class Trade extends Component {
   };
 
   componentDidMount() {
-    //this.props.fetchTransactionsRequest();
+    this.props.fetchTransactionsRequest();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -135,8 +135,6 @@ class Trade extends Component {
   };
 
   render() {
-    console.log('props', this.props);
-
     const { currency } = this.props.match.params;
     const {
       currencyName,
@@ -172,7 +170,7 @@ class Trade extends Component {
                 <Wallet />
 
                 <TradeOperations__Container>
-                  <h2>Покупка/продажа</h2>
+                  <h4>Покупка/продажа</h4>
                   <TradeOperations__InputWrapper>
                     <TradeOperations__Input
                       onChange={this.handleChange}
@@ -215,7 +213,7 @@ class Trade extends Component {
               </TradePage__Operations>
               <section>
                 <TradeChart__Container>
-                  <h2>Окно графика</h2>
+                  <h4>Окно графика</h4>
                   <TradeChart__TableSection>
                     <TradeChart__Buttons>
                       {Object.keys(offsets).map(item => (
@@ -258,37 +256,44 @@ class Trade extends Component {
                   </TradeChart__TableSection>
                 </TradeChart__Container>
 
-                <Transactions__Table>
-                  <thead>
-                    <Transactions__TableHead>
-                      <Transactions__Th>Операция</Transactions__Th>
+                <h4>История операций</h4>
+                <Transactions__TableWrap>
+                  <Transactions__Table>
+                    <thead>
+                      <Transactions__TableHead>
+                        <Transactions__Th>Операция</Transactions__Th>
 
-                      <Transactions__Th>Дата</Transactions__Th>
+                        <Transactions__Th>Дата</Transactions__Th>
 
-                      <Transactions__Th>{currencyName.toUpperCase()}</Transactions__Th>
+                        <Transactions__Th>{currencyName.toUpperCase()}</Transactions__Th>
 
-                      <Transactions__Th>USD</Transactions__Th>
-                    </Transactions__TableHead>
-                  </thead>
-                  <tbody>
-                    {Object.keys(transactions.records).map(keyTransaction => {
-                      let transaction = transactions.records[keyTransaction];
-                      let key_delta = currencyName + '_delta';
-                      return transaction && transaction.hasOwnProperty(key_delta) ? (
-                        <Transactions__Tr>
-                          <Transactions__Td>
-                            {transaction.usd_delta > 0 ? 'Продажа' : 'Покупка'}
-                          </Transactions__Td>
-                          <Transactions__Td>
-                            {moment(transaction.created_at).format('DD.mm.YY HH:MM')}
-                          </Transactions__Td>
-                          <Transactions__Td>{transaction[key_delta]}</Transactions__Td>
-                          <Transactions__Td>{transaction['usd_delta']}</Transactions__Td>
-                        </Transactions__Tr>
-                      ) : null;
-                    })}
-                  </tbody>
-                </Transactions__Table>
+                        <Transactions__Th>USD</Transactions__Th>
+                      </Transactions__TableHead>
+                    </thead>
+                    <tbody>
+                      {transactions
+                        ? transactions.data.result.map(transaction => {
+                            let key_delta = currencyName + '_delta';
+                            return transaction && transaction.hasOwnProperty(key_delta) ? (
+                              <Transactions__Tr>
+                                <Transactions__Td>
+                                  {transaction.usd_delta > 0 ? 'Продажа' : 'Покупка'}
+                                </Transactions__Td>
+                                <Transactions__Td>
+                                  {moment(
+                                    transaction.created_at,
+                                    'YYYY-MM-DDTHH:mm:ss.SSSZ',
+                                  ).format('DD.MM.YY HH:mm')}
+                                </Transactions__Td>
+                                <Transactions__Td>{transaction[key_delta]}</Transactions__Td>
+                                <Transactions__Td>{transaction['usd_delta']}</Transactions__Td>
+                              </Transactions__Tr>
+                            ) : null;
+                          })
+                        : ''}
+                    </tbody>
+                  </Transactions__Table>
+                </Transactions__TableWrap>
               </section>
             </TradePage__Container>
             <Footer />
@@ -299,45 +304,43 @@ class Trade extends Component {
   }
 }
 
-Trade.defaultProps = {
-  transactions: {
-    records: {
-      0: {
-        id: 3905,
-        usd_delta: 1185.2578238501976,
-        candle_state: {
-          id: 220131,
-          mts: 1526410560000,
-          high: 712.81,
-          low: 712.31,
-          sell: 712.56,
-          purchase: 705.4344,
-          created_at: '2018-05-15T18:56:34.918Z',
-          updated_at: '2018-05-15T18:57:05.316Z',
-        },
-        created_at: '2018-05-15T18:57:06.496Z',
-        eth_delta: -1.6801814936303043,
-      },
+// Trade.defaultProps = {
+//   transactions: [
+//     {
+//       id: 3905,
+//       usd_delta: 1185.2578238501976,
+//       candle_state: {
+//         id: 220131,
+//         mts: 1526410560000,
+//         high: 712.81,
+//         low: 712.31,
+//         sell: 712.56,
+//         purchase: 705.4344,
+//         created_at: '2018-05-15T18:56:34.918Z',
+//         updated_at: '2018-05-15T18:57:05.316Z',
+//       },
+//       created_at: '2018-05-15T18:57:06.496Z',
+//       eth_delta: -1.6801814936303043,
+//     },
 
-      1: {
-        id: 3726,
-        usd_delta: -8347.2,
-        candle_state: {
-          id: 212151,
-          mts: 1526152140000,
-          high: 8347.2,
-          low: 8347.2,
-          sell: 8347.2,
-          purchase: 8263.728,
-          created_at: '2018-05-12T19:09:27.679Z',
-          updated_at: '2018-05-12T19:09:27.679Z',
-        },
-        created_at: '2018-05-12T19:09:55.317Z',
-        btc_delta: 1,
-      },
-    },
-  },
-};
+//     {
+//       id: 3726,
+//       usd_delta: -8347.2,
+//       candle_state: {
+//         id: 212151,
+//         mts: 1526152140000,
+//         high: 8347.2,
+//         low: 8347.2,
+//         sell: 8347.2,
+//         purchase: 8263.728,
+//         created_at: '2018-05-12T19:09:27.679Z',
+//         updated_at: '2018-05-12T19:09:27.679Z',
+//       },
+//       created_at: '2018-05-12T19:09:55.317Z',
+//       btc_delta: 1,
+//     },
+//   ],
+// };
 
 const mapStateToProps = state => ({
   walletBtc: getWalletBtc(state),
@@ -353,14 +356,14 @@ const mapStateToProps = state => ({
   purchaseEth: purchaseEth(state),
   currencyName: getSelected(state),
   offset: getOffset(state),
+  transactions: getRecords(state),
 });
 
 const mapDispatchToProps = {
-  fetchWalletRequest,
   buyCurrencyRequest,
   sellCurrencyRequest,
   selectOffset,
-  //fetchTransactionsRequest,
+  fetchTransactionsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trade);

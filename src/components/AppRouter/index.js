@@ -12,10 +12,9 @@ class AppRouter extends Component {
   render() {
     return (
       <Switch>
-        
         <Route path="/login" exact component={Login} />
         <PrivateRoute path="/trade/:currency" exact component={Trade} />
-        <PrivateRoute path="/profile" exact component={Profile} />
+        <PrivateRoute path="/profile/:login" exact component={Profile} />
         <PrivateRoute path="/feeds" exact component={Feeds} />
         <PrivateRoute path="/stats" exact component={Stats} />
         <Redirect to="/trade/btc" />

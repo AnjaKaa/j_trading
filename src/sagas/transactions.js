@@ -9,7 +9,6 @@ import { getUserTransactions } from '../api';
 export function* transactionsFlow(action) {
   try {
     const result = yield call(getUserTransactions);
-
     yield put(fetchTransactionsSuccess(result));
   } catch (error) {
     const message = error.data.message;

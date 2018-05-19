@@ -16,6 +16,6 @@ export default function*() {
   yield fork(sellWatch);
   yield fork(walletWatch);
   yield fork(userInfoWatch);
-  //yield fork(transactionsWatch);
+  yield fork(transactionsWatch);
   yield fork(feedWatch);
 }

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Main = styled.main`
-  height: 100vh;
   font-family: 'Roboto', 'Arial', sans-serif;
   background-color: #f5f5f6;
 `;
@@ -12,8 +11,8 @@ export const WrapMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%
   position: absolute;
   align-items: center;
 `;
@@ -171,7 +170,9 @@ export const UserBlockItem = styled.div`
   text-align: center;
 
   span {
+    position: relative;
     line-height: 32px;
+    z-index: 100;
   }
 
   &:before {
@@ -181,9 +182,9 @@ export const UserBlockItem = styled.div`
     left: 0;
     width: 100%;
     height: 32px;
-    background-color: #ffffff;
+    background-color: ${props => (props.active ? '#468597' : '#ffffff')};
     border-radius: 15px;
-    opacity: 0.2;
+    opacity: ${props => (props.active ? 1 : 0.2)};
   }
 
   a {
@@ -338,7 +339,6 @@ export const TradePage__Container = styled.article`
   justify-content: start;
   background-color: #ffffff;
   padding: 20px 10px 10px 20px;
-  overflow: auto;
 `;
 
 export const TradePage__Operations = styled.section`
@@ -415,8 +415,13 @@ export const TradeChart__Button = styled.button`
   padding: 2px 16px;
 `;
 
+export const Transactions__TableWrap = styled.div`
+  max-height: 160px;
+  overflow: auto;
+`;
+
 export const Transactions__Table = styled.table`
-  margin: 40px 0;
+  margin: 0;
   width: 100%;
   text-align: right;
   border: 1px solid #edf0f1;
@@ -442,6 +447,11 @@ export const Transactions__Td = styled.td`
   border: 1px solid #edf0f1;
   padding: 5px 10px;
 `;
+export const FeedsList__Container = styled.div`
+  overflow: auto;
+  max-height: calc(100% - 220px);
+  padding: 20px 0;
+`;
 
 export const FeedsMainContainer = styled(Container)`
   flex-grow: 1;
@@ -456,6 +466,7 @@ export const Feed__Container = styled.div`
   padding: 50px 30px;
   background-color: #ffffff;
   min-width: 530px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 
 export const Feed__Header = styled.div`
@@ -497,7 +508,6 @@ export const Comment__Btn = styled.a`
   padding: 10px;
   color: #adaeb0;
   background-color: #f2f3f5;
-  color: #adaeb0;
   cursor: pointer;
   img {
     width: 15px;

@@ -61,14 +61,15 @@ class Header extends Component {
   };
 
   render() {
-    console.log('HEADER', this.props);
     const { currency } = this.props.match.params;
     const { title, userInfo } = this.props;
     const { btc, eth } = this.state;
     return (
       <HeaderWrap>
         <Container>
-          <Logo src={imgLogo} alt="logo-header" />
+          <Link to="/">
+            <Logo src={imgLogo} alt="logo-header" />
+          </Link>
           <HeaderTitle> {title} </HeaderTitle>
 
           <CurrencyLink className={currency === 'btc' ? 'active' : null} to="/trade/btc">
@@ -82,16 +83,18 @@ class Header extends Component {
           </CurrencyLink>
 
           <UserBlock>
-            <UserBlockItem>
-              <span> Лента </span>
-              <CountNewFeeds>9+</CountNewFeeds>
-            </UserBlockItem>
+            <Link to="/feeds">
+              <UserBlockItem active={this.props.match.path === '/feeds' ? true : false}>
+                <span> Лента </span>
+                <CountNewFeeds>9+</CountNewFeeds>
+              </UserBlockItem>
+            </Link>
             <UserBlockItem>
               <span>
                 <Link to={`/stats`}> место </Link>{' '}
               </span>
             </UserBlockItem>
-            <UserBlockItem>
+            <UserBlockItem active={this.props.match.path.slice(0, 8) === '/profile' ? true : false}>
               <span> {userInfo.email} </span>
             </UserBlockItem>
           </UserBlock>

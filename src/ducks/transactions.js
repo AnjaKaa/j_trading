@@ -1,42 +1,54 @@
-import { createActions, handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
+import { handleActions, createActions } from 'redux-actions';
 
-export const {
-  fetchTransactionsRequest,
-  fetchTransactionsSuccess,
-  fetchTransactionsFailure,
-} = createActions(
-  'FETCH_TRANSACTION_REQUEST',
-  'FETCH_TRANSACTION_SUCCESS',
-  'FETCH_TRANSACTION_FAILURE',
-);
-
-const initialState = {
-  records: {},
-  isLoading: false,
-  error: null,
-};
-
-export default handleActions(
-  {
-    [fetchTransactionsRequest]: (state, action) => ({
-      ...state,
-      isLoading: true,
-    }),
-
-    [fetchTransactionsSuccess]: (state, action) => ({
-      ...state,
-      isLoading: false,
-      records: action.payload.data.result,
-    }),
-
-    [fetchTransactionsFailure]: (state, action) => ({
-      ...state,
-      isLoading: false,
-      error: action.payload,
-    }),
+const {
+  transactions: { fetchTransactionsRequest, fetchTransactionsSuccess, fetchTransactionsFailure },
+} = createActions({
+  TRANSACTIONS: {
+    FETCH_TRANSACTIONS_REQUEST: null,
+    FETCH_TRANSACTIONS_SUCCESS: null,
+    FETCH_TRANSACTIONS_FAILURE: null,
   },
-  initialState,
+});
+
+/*
+isLoading
+error
+records
+*/
+const isFetching = handleActions(
+  {
+    [fetchTransactionsRequest]: () => true,
+    [fetchTransactionsSuccess]: () => false,
+    [fetchTransactionsFailure]: () => false,
+  },
+  false,
 );
 
-export const getUserTransactions = state => state.transactions.records;
+const error = handleActions(
+  {
+    [fetchTransactionsRequest]: () => null,
+    [fetchTransactionsSuccess]: () => null,
+    [fetchTransactionsFailure]: (state, action) => action.payload,
+  },
+  null,
+);
+
+const records = handleActions(
+  // data
+  {
+    [fetchTransactionsSuccess]: (state, action) => action.payload,
+  },
+  null,
+);
+
+export default combineReducers({
+  isFetching,
+  error,
+  records,
+});
+
+export { fetchTransactionsRequest, fetchTransactionsSuccess, fetchTransactionsFailure };
+
+export const getIsFetching = state => state.transactions.isFetching;
+export const getRecords = state => state.transactions.records; // getData

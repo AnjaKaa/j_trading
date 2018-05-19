@@ -23,7 +23,7 @@ export default handleActions(
     [fetchFeedSuccess]: (state, action) => ({
       ...state,
       isLoading: false,
-      records: action.payload.data.result,
+      records: action.payload.data,
     }),
 
     [fetchFeedFailure]: (state, action) => ({
@@ -35,4 +35,4 @@ export default handleActions(
   initialState,
 );
 
-export const getUserFeed = state => state.feed;
+export const getUserFeed = state => (state.feed.records ? state.feed.records.result : []);
