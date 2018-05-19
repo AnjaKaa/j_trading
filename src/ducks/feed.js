@@ -1,5 +1,5 @@
 import { createActions, handleActions } from 'redux-actions';
-import { combineReducers } from 'redux';
+//import { combineReducers } from 'redux';
 
 export const { fetchFeedRequest, fetchFeedSuccess, fetchFeedFailure } = createActions(
   'FETCH_FEED_REQUEST',

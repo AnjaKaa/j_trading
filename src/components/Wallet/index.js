@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
-  CoinInput__Container,
-  CoinInput__Input,
-  CoinInput__Integer,
-  CoinInput__Fraction,
-  CoinInput__Currency,
+  CoinInputContainer,
+  CoinInputInput,
+  CoinInputInteger,
+  CoinInputFraction,
+  CoinInputCurrency,
 } from '../StyledComponents';
 
 import {
@@ -15,14 +15,7 @@ import {
   getWalletUsd,
   getWalletError,
 } from '../../ducks/wallet';
-import {
-  sellCurrencyRequest,
-  getCurrentBtcPurchase,
-  getCurrentBtcSell,
-  getCurrentEthPurchase,
-  getCurrentEthSell,
-  getSelected,
-} from '../../ducks/currency';
+import { sellCurrencyRequest } from '../../ducks/currency';
 
 class Wallet extends Component {
   state = {
@@ -32,7 +25,7 @@ class Wallet extends Component {
   };
   componentDidMount() {
     this.props.fetchWalletRequest();
-    const { walletUsd, walletBtc, walletEth, sell, purchase } = this.props;
+    const { walletUsd, walletBtc, walletEth } = this.props;
     this.setState({
       btc: walletBtc,
       eth: walletEth,
@@ -41,8 +34,8 @@ class Wallet extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { walletUsd, walletBtc, walletEth, sell, purchase } = nextProps;
-    const { currentInput } = this.state;
+    const { walletUsd, walletBtc, walletEth } = nextProps;
+
     this.setState({
       btc: walletBtc,
       eth: walletEth,
@@ -56,41 +49,39 @@ class Wallet extends Component {
     return (
       <Fragment>
         <span>{this.props.btc}</span>
-        <CoinInput__Container>
-          <CoinInput__Input>
-            <CoinInput__Integer textAlign="right">{Math.round(Math.floor(eth))}</CoinInput__Integer>.
-            <CoinInput__Fraction>
+        <CoinInputContainer>
+          <CoinInputInput>
+            <CoinInputInteger textAlign="right">{Math.round(Math.floor(eth))}</CoinInputInteger>.
+            <CoinInputFraction>
               {String(eth - Math.floor(eth))
                 .replace('0.', '')
                 .slice(0, 8)}
-            </CoinInput__Fraction>
-          </CoinInput__Input>
-          <CoinInput__Currency>ETH</CoinInput__Currency>
-        </CoinInput__Container>
-        <CoinInput__Container>
-          <CoinInput__Input>
-            <CoinInput__Integer textAlign="right">{Math.round(Math.floor(btc))}</CoinInput__Integer>.
-            <CoinInput__Fraction>
+            </CoinInputFraction>
+          </CoinInputInput>
+          <CoinInputCurrency>ETH</CoinInputCurrency>
+        </CoinInputContainer>
+        <CoinInputContainer>
+          <CoinInputInput>
+            <CoinInputInteger textAlign="right">{Math.round(Math.floor(btc))}</CoinInputInteger>.
+            <CoinInputFraction>
               {String(btc - Math.floor(btc))
                 .replace('0.', '')
                 .slice(0, 8)}
-            </CoinInput__Fraction>
-          </CoinInput__Input>
-          <CoinInput__Currency>BTC</CoinInput__Currency>
-        </CoinInput__Container>
-        <CoinInput__Container>
-          <CoinInput__Input>
-            <CoinInput__Integer textAlign="right">
-              {Math.round(Math.floor(usd))}.
-            </CoinInput__Integer>
-            <CoinInput__Fraction>
+            </CoinInputFraction>
+          </CoinInputInput>
+          <CoinInputCurrency>BTC</CoinInputCurrency>
+        </CoinInputContainer>
+        <CoinInputContainer>
+          <CoinInputInput>
+            <CoinInputInteger textAlign="right">{Math.round(Math.floor(usd))}.</CoinInputInteger>
+            <CoinInputFraction>
               {String(usd - Math.floor(usd))
                 .replace('0.', '')
                 .slice(0, 8)}
-            </CoinInput__Fraction>
-          </CoinInput__Input>
-          <CoinInput__Currency>$</CoinInput__Currency>
-        </CoinInput__Container>
+            </CoinInputFraction>
+          </CoinInputInput>
+          <CoinInputCurrency>$</CoinInputCurrency>
+        </CoinInputContainer>
       </Fragment>
     );
   }

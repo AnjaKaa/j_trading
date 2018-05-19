@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 import Background from '../Background';
-import { Main, WrapMain, FeedsList__Container } from '../StyledComponents';
+import { Main, WrapMain, FeedsListContainer } from '../StyledComponents';
 
 import Feed from './Feed';
 
@@ -31,9 +31,9 @@ class Feeds extends Component {
         <Main>
           <WrapMain>
             <Header title="Лента" />
-            <FeedsList__Container>
+            <FeedsListContainer>
               {records.map(record => <Feed key={record.id} record={record} />)}
-            </FeedsList__Container>
+            </FeedsListContainer>
             <Footer />
           </WrapMain>
         </Main>

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import { Comment__Btn } from '../StyledComponents';
+import { CommentButton } from '../StyledComponents';
 
 import imgCommet from '../../assets/message-bubble.svg';
 
 export const CommentBtn = props => (
-  <Comment__Btn onClick={props.onClick}>
-    <img src={imgCommet} width="15" height="15" />
+  <CommentButton onClick={props.onClick}>
+    <img src={imgCommet} alt="{imgCommet}" width="15" height="15" />
     {props.cntComments}
-  </Comment__Btn>
+  </CommentButton>
 );
 
 export class Comments extends Component {

@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import {
-  Feed__Container,
-  Feed__Header,
-  Feed__UserName,
-  Feed__Date,
-  Feed__Content,
-  Feed__ContentRow,
-  Feed__Title,
+  FeedContainer,
+  FeedHeader,
+  FeedUserName,
+  FeedDate,
+  FeedContent,
+  FeedContentRow,
+  FeedTitle,
 } from '../StyledComponents';
 
 import { Comments, CommentBtn } from './Comment';
@@ -25,34 +25,34 @@ class Feed extends Component {
     const { visibleComments } = this.state;
     return (
       <Fragment>
-        <Feed__Container>
-          <Feed__Header>
-            <Feed__UserName>user_id: {record.user_id}</Feed__UserName>
-            <Feed__Date>{moment(record.create_at).format('DD.mm.YY HH:MM')}</Feed__Date>
-          </Feed__Header>
-          <Feed__Content>
+        <FeedContainer>
+          <FeedHeader>
+            <FeedUserName>user_id: {record.user_id}</FeedUserName>
+            <FeedDate>{moment(record.create_at).format('DD.mm.YY HH:MM')}</FeedDate>
+          </FeedHeader>
+          <FeedContent>
             {record.imgTopPath ? (
-              <Feed__ContentRow>
-                <img src={record.imgTopPath} />
-              </Feed__ContentRow>
+              <FeedContentRow>
+                <img src={record.imgTopPath} alt="" />
+              </FeedContentRow>
             ) : (
               ''
             )}
 
-            <Feed__ContentRow>
-              <Feed__Title>{record.text}</Feed__Title>
+            <FeedContentRow>
+              <FeedTitle>{record.text}</FeedTitle>
               <CommentBtn cntComments="1" onClick={this.toggleVisibleComments} />
-            </Feed__ContentRow>
-            {record.content ? <Feed__ContentRow> {record.content}</Feed__ContentRow> : ''}
+            </FeedContentRow>
+            {record.content ? <FeedContentRow> {record.content}</FeedContentRow> : ''}
             {record.imgBottiomPath ? (
-              <Feed__ContentRow>
-                <img src={record.imgBottomPath} />
-              </Feed__ContentRow>
+              <FeedContentRow>
+                <img src={record.imgBottomPath} alt="" />
+              </FeedContentRow>
             ) : (
               ''
             )}
-          </Feed__Content>
-        </Feed__Container>
+          </FeedContent>
+        </FeedContainer>
         {visibleComments ? <Comments /> : ''}
       </Fragment>
     );

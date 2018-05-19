@@ -11,7 +11,6 @@ import {
   HeaderWrap,
   Logo,
   HeaderTitle,
-  HeaderStatisticsBlock,
   UserBlock,
   UserBlockItem,
   CountNewFeeds,
@@ -63,7 +62,6 @@ class Header extends Component {
   render() {
     const { currency } = this.props.match.params;
     const { title, userInfo } = this.props;
-    const { btc, eth } = this.state;
     return (
       <HeaderWrap>
         <Container>

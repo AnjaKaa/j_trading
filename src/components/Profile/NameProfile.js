@@ -4,8 +4,6 @@ import Modal from './Modal';
 
 import { ProfileCol, ProfileName, ProfileNameWrap } from '../StyledComponents';
 
-import imgAvatar from '../../assets/avatar.jpg';
-
 const ModalItem = props => {
   return (
     <Modal domNode={document.querySelector('#modal')}>
@@ -55,7 +53,7 @@ class NameProfile extends Component {
               <ProfileName>{user.name || 'User name'}</ProfileName>
               <a
                 name="first_name"
-                href="#"
+                href=""
                 onClick={() => {
                   this.showModal();
                 }}
@@ -68,7 +66,7 @@ class NameProfile extends Component {
               <ProfileName>{user.surname || 'User surname'}</ProfileName>
               <a
                 name="last_name"
-                href="#"
+                href=""
                 onClick={() => {
                   this.showModal();
                 }}

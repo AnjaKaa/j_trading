@@ -9,23 +9,23 @@ import moment from 'moment';
 import {
   Main,
   WrapMain,
-  TradePage__Container,
-  TradePage__Operations,
-  TradeOperations__Container,
-  TradeOperations__InputWrapper,
-  TradeOperations__Input,
-  TradeOperations__Currency,
-  TradeOperations__Button,
-  TradeChart__Container,
-  TradeChart__TableSection,
-  TradeChart__Buttons,
-  TradeChart__Button,
-  Transactions__TableWrap,
-  Transactions__Table,
-  Transactions__TableHead,
-  Transactions__Th,
-  Transactions__Tr,
-  Transactions__Td,
+  TradePageContainer,
+  TradePageOperations,
+  TradeOperationsContainer,
+  TradeOperationsInputWrapper,
+  TradeOperationsInput,
+  TradeOperationsCurrency,
+  TradeOperationsButton,
+  TradeChartContainer,
+  TradeChartTableSection,
+  TradeChartButtons,
+  TradeChartButton,
+  TransactionsTableWrap,
+  TransactionsTable,
+  TransactionsTableHead,
+  TransactionsTh,
+  TransactionsTr,
+  TransactionsTd,
 } from '../StyledComponents';
 
 import {
@@ -44,13 +44,7 @@ import {
   selectOffset,
 } from '../../ducks/currency';
 
-import {
-  fetchWalletRequest,
-  getWalletBtc,
-  getWalletEth,
-  getWalletUsd,
-  getWalletError,
-} from '../../ducks/wallet';
+import { getWalletBtc, getWalletEth, getWalletUsd, getWalletError } from '../../ducks/wallet';
 import { fetchTransactionsRequest, getRecords } from '../../ducks/transactions';
 
 class Trade extends Component {
@@ -138,8 +132,6 @@ class Trade extends Component {
     const { currency } = this.props.match.params;
     const {
       currencyName,
-      sell,
-      purchase,
       sellBtc,
       purchaseBtc,
       sellEth,
@@ -164,69 +156,69 @@ class Trade extends Component {
         <Main>
           <WrapMain>
             <Header title="Торги" />
-            <TradePage__Container>
-              <TradePage__Operations>
+            <TradePageContainer>
+              <TradePageOperations>
                 <h2>Ваш счёт</h2>
                 <Wallet />
 
-                <TradeOperations__Container>
+                <TradeOperationsContainer>
                   <h4>Покупка/продажа</h4>
-                  <TradeOperations__InputWrapper>
-                    <TradeOperations__Input
+                  <TradeOperationsInputWrapper>
+                    <TradeOperationsInput
                       onChange={this.handleChange}
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       name="inputFiat"
                       value={inputFiat}
                     />
-                    <TradeOperations__Currency>{currency.toUpperCase()}</TradeOperations__Currency>
-                  </TradeOperations__InputWrapper>
-                </TradeOperations__Container>
+                    <TradeOperationsCurrency>{currency.toUpperCase()}</TradeOperationsCurrency>
+                  </TradeOperationsInputWrapper>
+                </TradeOperationsContainer>
                 <div>
-                  <TradeOperations__InputWrapper>
-                    <TradeOperations__Input
+                  <TradeOperationsInputWrapper>
+                    <TradeOperationsInput
                       onChange={this.handleChange}
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       name="inputPurchase"
                       value={inputPurchase}
                     />
-                    <TradeOperations__Currency>$</TradeOperations__Currency>
-                  </TradeOperations__InputWrapper>
-                  <TradeOperations__Button className="redBtn" onClick={this.handleSell}>
+                    <TradeOperationsCurrency>$</TradeOperationsCurrency>
+                  </TradeOperationsInputWrapper>
+                  <TradeOperationsButton className="redBtn" onClick={this.handleSell}>
                     Продать
-                  </TradeOperations__Button>
+                  </TradeOperationsButton>
                 </div>
                 <div>
-                  <TradeOperations__InputWrapper>
-                    <TradeOperations__Input
+                  <TradeOperationsInputWrapper>
+                    <TradeOperationsInput
                       onChange={this.handleChange}
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       name="inputSell"
                       value={inputSell}
                     />
-                    <TradeOperations__Currency>$</TradeOperations__Currency>
-                  </TradeOperations__InputWrapper>
-                  <TradeOperations__Button onClick={this.handleBuy}>Купить</TradeOperations__Button>
+                    <TradeOperationsCurrency>$</TradeOperationsCurrency>
+                  </TradeOperationsInputWrapper>
+                  <TradeOperationsButton onClick={this.handleBuy}>Купить</TradeOperationsButton>
                 </div>
-              </TradePage__Operations>
+              </TradePageOperations>
               <section>
-                <TradeChart__Container>
+                <TradeChartContainer>
                   <h4>Окно графика</h4>
-                  <TradeChart__TableSection>
-                    <TradeChart__Buttons>
+                  <TradeChartTableSection>
+                    <TradeChartButtons>
                       {Object.keys(offsets).map(item => (
-                        <TradeChart__Button
+                        <TradeChartButton
                           onClick={this.handleOffsetBtn}
                           key={item}
                           name={item}
                           active={offset === item ? true : false}
                         >
                           {offsets[item]}
-                        </TradeChart__Button>
+                        </TradeChartButton>
                       ))}
-                    </TradeChart__Buttons>
+                    </TradeChartButtons>
                     <LineChart
                       lineColors={['blue', 'red']}
                       axes
@@ -253,49 +245,49 @@ class Trade extends Component {
                         })),
                       ]}
                     />
-                  </TradeChart__TableSection>
-                </TradeChart__Container>
+                  </TradeChartTableSection>
+                </TradeChartContainer>
 
                 <h4>История операций</h4>
-                <Transactions__TableWrap>
-                  <Transactions__Table>
+                <TransactionsTableWrap>
+                  <TransactionsTable>
                     <thead>
-                      <Transactions__TableHead>
-                        <Transactions__Th>Операция</Transactions__Th>
+                      <TransactionsTableHead>
+                        <TransactionsTh>Операция</TransactionsTh>
 
-                        <Transactions__Th>Дата</Transactions__Th>
+                        <TransactionsTh>Дата</TransactionsTh>
 
-                        <Transactions__Th>{currencyName.toUpperCase()}</Transactions__Th>
+                        <TransactionsTh>{currencyName.toUpperCase()}</TransactionsTh>
 
-                        <Transactions__Th>USD</Transactions__Th>
-                      </Transactions__TableHead>
+                        <TransactionsTh>USD</TransactionsTh>
+                      </TransactionsTableHead>
                     </thead>
                     <tbody>
                       {transactions
                         ? transactions.data.result.map(transaction => {
                             let key_delta = currencyName + '_delta';
                             return transaction && transaction.hasOwnProperty(key_delta) ? (
-                              <Transactions__Tr>
-                                <Transactions__Td>
+                              <TransactionsTr>
+                                <TransactionsTd>
                                   {transaction.usd_delta > 0 ? 'Продажа' : 'Покупка'}
-                                </Transactions__Td>
-                                <Transactions__Td>
+                                </TransactionsTd>
+                                <TransactionsTd>
                                   {moment(
                                     transaction.created_at,
                                     'YYYY-MM-DDTHH:mm:ss.SSSZ',
                                   ).format('DD.MM.YY HH:mm')}
-                                </Transactions__Td>
-                                <Transactions__Td>{transaction[key_delta]}</Transactions__Td>
-                                <Transactions__Td>{transaction['usd_delta']}</Transactions__Td>
-                              </Transactions__Tr>
+                                </TransactionsTd>
+                                <TransactionsTd>{transaction[key_delta]}</TransactionsTd>
+                                <TransactionsTd>{transaction['usd_delta']}</TransactionsTd>
+                              </TransactionsTr>
                             ) : null;
                           })
                         : ''}
                     </tbody>
-                  </Transactions__Table>
-                </Transactions__TableWrap>
+                  </TransactionsTable>
+                </TransactionsTableWrap>
               </section>
-            </TradePage__Container>
+            </TradePageContainer>
             <Footer />
           </WrapMain>
         </Main>

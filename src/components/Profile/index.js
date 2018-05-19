@@ -23,7 +23,7 @@ import {
   getWalletUsd,
   getWalletError,
 } from '../../ducks/wallet';
-import { getCurrentBtcPurchase, getCurrentEthPurchase, getSelected } from '../../ducks/currency';
+import { getCurrentBtcPurchase, getCurrentEthPurchase } from '../../ducks/currency';
 
 class Profile extends Component {
   state = {

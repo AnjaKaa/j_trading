@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -295,13 +294,13 @@ export const ProfileSum = styled.span`
   font-size: 40px;
 `;
 
-export const CoinInput__Container = styled.div`
+export const CoinInputContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 298px;
 `;
 
-export const CoinInput__Input = styled.div`
+export const CoinInputInput = styled.div`
   background-color: #414244;
   border: 1px solid #000;
   color: #ffffff;
@@ -311,13 +310,13 @@ export const CoinInput__Input = styled.div`
   margin: 5px 0;
 `;
 
-export const CoinInput__Integer = styled.span`
+export const CoinInputInteger = styled.span`
   width: 55%;
   display: inline-block;
   text-align: right;
 `;
 
-export const CoinInput__Fraction = styled.span`
+export const CoinInputFraction = styled.span`
   color: #8a8a8a;
   max-width: 78px;
   display: inline-block;
@@ -326,13 +325,13 @@ export const CoinInput__Fraction = styled.span`
   overflow: hidden;
 `;
 
-export const CoinInput__Currency = styled.p`
+export const CoinInputCurrency = styled.p`
   flex: 1 1;
   text-align: left;
   margin: 15px 0 0 15px;
 `;
 
-export const TradePage__Container = styled.article`
+export const TradePageContainer = styled.article`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -341,15 +340,15 @@ export const TradePage__Container = styled.article`
   padding: 20px 10px 10px 20px;
 `;
 
-export const TradePage__Operations = styled.section`
+export const TradePageOperations = styled.section`
   width: 450px;
 `;
 
-export const TradeOperations__Container = styled.article`
+export const TradeOperationsContainer = styled.article`
   padding-top: 40px;
 `;
 
-export const TradeOperations__InputWrapper = styled.div`
+export const TradeOperationsInputWrapper = styled.div`
   background-color: #f2f2f2;
   border-radius: 4px;
   display: inline-block;
@@ -358,7 +357,7 @@ export const TradeOperations__InputWrapper = styled.div`
   width: 218px;
 `;
 
-export const TradeOperations__Input = styled.input`
+export const TradeOperationsInput = styled.input`
   background-color: transparent;
   border: none;
   text-align: right;
@@ -368,7 +367,7 @@ export const TradeOperations__Input = styled.input`
   box-sizing: border-box;
 `;
 
-export const TradeOperations__Currency = styled.span`
+export const TradeOperationsCurrency = styled.span`
   position: absolute;
   right: 8px;
   width: 38px;
@@ -377,14 +376,14 @@ export const TradeOperations__Currency = styled.span`
   top: 5px;
 `;
 
-export const TradeChart__Buttons = styled.div`
+export const TradeChartButtons = styled.div`
   display: flex;
   justify-content: flex-end;
   background-color: #edf0f1;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
-export const TradeOperations__Button = styled.button`
+export const TradeOperationsButton = styled.button`
   width: 100px;
   margin-left: 20px;
   border: 0;
@@ -394,18 +393,18 @@ export const TradeOperations__Button = styled.button`
   background-color: ${props => (props.className === 'redBtn' ? '#ba564f' : '#69b3dc')};
 `;
 
-export const TradeChart__Container = styled.article`
+export const TradeChartContainer = styled.article`
   width: 750px;
 `;
 
-export const TradeChart__TableSection = styled.div`
+export const TradeChartTableSection = styled.div`
   border: 1px solid #edf0f1;
   height: 448px;
   margin-top: 15px;
   border-radius: 3px;
 `;
 
-export const TradeChart__Button = styled.button`
+export const TradeChartButton = styled.button`
   margin: 0 4px;
   border: none;
   border-radius: 3px;
@@ -415,12 +414,12 @@ export const TradeChart__Button = styled.button`
   padding: 2px 16px;
 `;
 
-export const Transactions__TableWrap = styled.div`
+export const TransactionsTableWrap = styled.div`
   max-height: 160px;
   overflow: auto;
 `;
 
-export const Transactions__Table = styled.table`
+export const TransactionsTable = styled.table`
   margin: 0;
   width: 100%;
   text-align: right;
@@ -429,25 +428,25 @@ export const Transactions__Table = styled.table`
   border-radius: 3px;
 `;
 
-export const Transactions__TableHead = styled.tr`
+export const TransactionsTableHead = styled.tr`
   background-color: #edf0f1;
   border: 1px solid #edf0f1;
 `;
 
-export const Transactions__Th = styled.th`
+export const TransactionsTh = styled.th`
   background-color: #edf0f1;
   border: 1px solid #edf0f1;
 `;
 
-export const Transactions__Tr = styled.tr`
+export const TransactionsTr = styled.tr`
   border: 1px solid #edf0f1;
 `;
 
-export const Transactions__Td = styled.td`
+export const TransactionsTd = styled.td`
   border: 1px solid #edf0f1;
   padding: 5px 10px;
 `;
-export const FeedsList__Container = styled.div`
+export const FeedsListContainer = styled.div`
   overflow: auto;
   max-height: calc(100% - 220px);
   padding: 20px 0;
@@ -459,7 +458,7 @@ export const FeedsMainContainer = styled(Container)`
   background-color: #ffffff;
 `;
 
-export const Feed__Container = styled.div`
+export const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
@@ -469,7 +468,7 @@ export const Feed__Container = styled.div`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 
-export const Feed__Header = styled.div`
+export const FeedHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -477,13 +476,13 @@ export const Feed__Header = styled.div`
   font-size: 18px;
 `;
 
-export const Feed__UserName = styled.div`
+export const FeedUserName = styled.div`
   font-weigth: bold;
 `;
-export const Feed__Date = styled.div`
+export const FeedDate = styled.div`
   color: #adaeb0;
 `;
-export const Feed__Content = styled.div`
+export const FeedContent = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -492,17 +491,17 @@ export const Feed__Content = styled.div`
   }
 `;
 
-export const Feed__ContentRow = styled.div`
+export const FeedContentRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-export const Feed__Title = styled.div`
+export const FeedTitle = styled.div`
   font-size: 22px;
   font-weigth: bold;
 `;
 
-export const Comment__Btn = styled.a`
+export const CommentButton = styled.a`
   display: inline-block;
   max-height: 15px;
   padding: 10px;

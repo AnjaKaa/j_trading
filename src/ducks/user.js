@@ -1,5 +1,5 @@
 import { createActions, handleActions } from 'redux-actions';
-import { combineReducers } from 'redux';
+//import { combineReducers } from 'redux';
 
 export const { fetchUserInfoRequest, fetchUserInfoSuccess, fetchUserInfoFailure } = createActions(
   'FETCH_USER_INFO_REQUEST',
